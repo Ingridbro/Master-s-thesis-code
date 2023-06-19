@@ -218,7 +218,7 @@ def add_constraints(model):
 
 def add_objective(model):
     def obj_rule(model):
-        Energy_cost = sum((model.spot_price[t] + model.G_ec_hourly[t] + model.G_ct_hourly[t]) * model.P_g_in[t] - (model.spot_price[t] + model.spot_price[t] * model.ma_loss_rt[t]) * model.P_g_out[t] for t in model.T)
+        Energy_cost = sum((model.spot_price[t] + model.G_ec_hourly[t] + model.G_ct_hourly[t]) * model.P_g_in[t] - (model.spot_price[t] - model.spot_price[t] * model.ma_loss_rt[t]) * model.P_g_out[t] for t in model.T)
         Energy_cost_fixed = 8800 + 4800 # Fixed annual cost of energy 2021 and 2022 - https://ts.tensio.no/kunde/nettleie-priser-og-avtaler/2022-nettleie-bedrift
 
         #Capacity rate
